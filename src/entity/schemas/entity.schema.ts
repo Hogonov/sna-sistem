@@ -91,10 +91,8 @@ export class Entity {
     description:
       'Represents symbols, i.e. $cashtags, included in the text of the Tweet.',
   })
-  @Prop({
-    type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Symbol' }],
-  })
-  symbols: Array<object>; // типизировать;
+  @Prop()
+  symbols: Array<object>; // типизировать
 
   @ApiProperty({
     example: [
@@ -119,9 +117,7 @@ export class Entity {
     ],
     description: 'Represents Twitter Polls included in the Tweet. ',
   })
-  @Prop({
-    type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Poll' }],
-  })
+  @Prop()
   polls: Array<object>; // типизировать;
 }
 

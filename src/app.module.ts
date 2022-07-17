@@ -8,6 +8,7 @@ import { EntityModule } from './entity/entity.module';
 import { HashtagModule } from './hashtag/hashtag.module';
 import { MediaModule } from './media/media.module';
 import { UrlModule } from './url/url.module';
+import { PlaceModule } from './place/place.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { UrlModule } from './url/url.module';
     HashtagModule,
     MediaModule,
     UrlModule,
+    PlaceModule,
   ],
   controllers: [AppController],
   providers: [AppService],

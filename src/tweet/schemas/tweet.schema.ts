@@ -1,6 +1,9 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import { ApiProperty } from '@nestjs/swagger';
+import * as mongoose from 'mongoose';
+import { Entity } from '../../entity/schemas/entity.schema';
+import { Place } from '../../place/schemas/place.schema';
 
 export type TweetDocument = Tweet & Document;
 
@@ -42,8 +45,8 @@ export class Tweet {
     description:
       'Entities which have been parsed out of the text of the Tweet.',
   })
-  @Prop()
-  entities: number; //  Object
+  @Prop({ type: { type: mongoose.Schema.Types.ObjectId, ref: 'Entity' } })
+  entities: Entity;
 
   @ApiProperty({
     example: 'Twitter Web Client',
@@ -92,8 +95,8 @@ export class Tweet {
     description:
       'Represents the geographic location of this Tweet as reported by the user or client application. The inner coordinates array is formatted as geoJSON (longitude first, then latitude).',
   })
-  @Prop()
-  coordinates: string;
+  @Prop({ type: Object })
+  coordinates: object;
 
   @ApiProperty({
     example: {
@@ -119,9 +122,10 @@ export class Tweet {
     },
     description:
       'Nullable When present, indicates that the tweet is associated (but not necessarily originating from) a Place .',
+    type: () => Place,
   })
-  @Prop()
-  place: string; // Object
+  @Prop({ type: { type: mongoose.Schema.Types.ObjectId, ref: 'Place' } })
+  place: Place;
 
   @ApiProperty({
     example: true,
@@ -184,12 +188,50 @@ export class Tweet {
   @Prop()
   lang: string;
 
-  /*  @ApiProperty({
-    example: 0,
-    description: '',
+  @ApiProperty({
+    example: {
+      id: 6253282,
+      id_str: '6253282',
+    },
+    description:
+      'Perspectival Only surfaces on methods supporting the include_my_retweet parameter, when set to true. Details the Tweet ID of the user’s own retweet (if existent) of this Tweet.',
+  })
+  @Prop({ type: Object })
+  current_user_retweet: object;
+
+  @ApiProperty({
+    example: { followers: false },
+    description:
+      'A set of key-value pairs indicating the intended contextual delivery of the containing Tweet. Currently used by Twitter’s Promoted Products.',
+  })
+  @Prop({ type: Object })
+  scopes: object;
+
+  @ApiProperty({
+    example: true,
+    description:
+      'When present and set to “true”, it indicates that this piece of content has been withheld due to a DMCA complaint .',
   })
   @Prop()
-  example: string;*/
+  withheld_copyright: boolean;
+
+  @ApiProperty({
+    example: ['GR', 'HK', 'MY'],
+    description:
+      'When present, indicates a list of uppercase two-letter country codes this content is withheld from. Twitter supports the following non-country values for this field:\n' +
+      '\n' +
+      '“XX” - Content is withheld in all countries “XY” - Content is withheld due to a DMCA request.',
+  })
+  @Prop()
+  withheld_in_countries: Array<string>;
+
+  @ApiProperty({
+    example: 'status',
+    description:
+      'When present, indicates whether the content being withheld is the “status” or a “user.”',
+  })
+  @Prop()
+  withheld_scope: string;
 }
 
 export const TweetSchema = SchemaFactory.createForClass(Tweet);

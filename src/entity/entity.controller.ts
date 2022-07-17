@@ -10,7 +10,9 @@ import {
 import { EntityService } from './entity.service';
 import { CreateEntityDto } from './dto/create-entity.dto';
 import { UpdateEntityDto } from './dto/update-entity.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Entity objects')
 @Controller('entity')
 export class EntityController {
   constructor(private readonly entityService: EntityService) {}

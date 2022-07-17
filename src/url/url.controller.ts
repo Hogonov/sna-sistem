@@ -10,7 +10,9 @@ import {
 import { UrlService } from './url.service';
 import { CreateUrlDto } from './dto/create-url.dto';
 import { UpdateUrlDto } from './dto/update-url.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Сслыки')
 @Controller('url')
 export class UrlController {
   constructor(private readonly urlService: UrlService) {}
