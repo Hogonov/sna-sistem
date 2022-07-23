@@ -9,6 +9,7 @@ import { HashtagModule } from './hashtag/hashtag.module';
 import { MediaModule } from './media/media.module';
 import { UrlModule } from './url/url.module';
 import { PlaceModule } from './place/place.module';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { PlaceModule } from './place/place.module';
     MediaModule,
     UrlModule,
     PlaceModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],
