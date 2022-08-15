@@ -10,6 +10,8 @@ import { MediaModule } from './media/media.module';
 import { UrlModule } from './url/url.module';
 import { PlaceModule } from './place/place.module';
 import { UserModule } from './user/user.module';
+import { ParseModule } from './parse/parse.module';
+import { FileModule } from './file/file.module';
 
 @Module({
   imports: [
@@ -24,6 +26,8 @@ import { UserModule } from './user/user.module';
     UrlModule,
     PlaceModule,
     UserModule,
+    ParseModule,
+    FileModule,
   ],
   controllers: [AppController],
   providers: [AppService],

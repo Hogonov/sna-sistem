@@ -6,6 +6,7 @@ import * as mongoose from 'mongoose';
 import { Media } from '../../media/schemas/media.schema';
 import { Url } from '../../url/schemas/url.schema';
 import { UserMention } from './user-mention.schema';
+import { Tweet } from '../../tweet/schemas/tweet.schema';
 
 export type EntityDocument = Entity & Document;
 
@@ -24,6 +25,13 @@ export class Entity {
   })
   @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Hashtag' }] })
   hashtags: Hashtag[];
+
+  @ApiProperty({
+    example: '',
+    description: 'User tweets',
+  })
+  @Prop({ type: { type: mongoose.Schema.Types.ObjectId, ref: 'Tweet' } })
+  tweets: Tweet;
 
   @ApiProperty({
     description: 'Represents media elements uploaded with the Tweet.',

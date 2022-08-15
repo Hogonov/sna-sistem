@@ -1,6 +1,8 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Entity } from '../../entity/schemas/entity.schema';
 import { ApiProperty } from '@nestjs/swagger';
+import { Tweet } from '../../tweet/schemas/tweet.schema';
+import * as mongoose from 'mongoose';
 
 @Schema()
 export class User {
@@ -11,6 +13,13 @@ export class User {
   })
   @Prop()
   name: string;
+
+  @ApiProperty({
+    example: '',
+    description: 'User tweets',
+  })
+  @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Tweet' }] })
+  tweets: Tweet[];
 
   @ApiProperty({
     example: 'twitterapi',

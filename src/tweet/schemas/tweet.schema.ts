@@ -4,6 +4,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import * as mongoose from 'mongoose';
 import { Entity } from '../../entity/schemas/entity.schema';
 import { Place } from '../../place/schemas/place.schema';
+import { User } from '../../user/schemas/user.schema';
 
 export type TweetDocument = Tweet & Document;
 
@@ -83,9 +84,10 @@ export class Tweet {
   @ApiProperty({
     example: 6253282,
     description: 'The user who posted this Tweet.',
+    type: () => User,
   })
-  @Prop()
-  user_id: number; // ссылка на таблицу с пользователями
+  @Prop({ type: { type: mongoose.Schema.Types.ObjectId, ref: 'User' } })
+  user_id: User;
 
   @ApiProperty({
     example: {
