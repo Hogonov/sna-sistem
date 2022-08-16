@@ -12,6 +12,7 @@ import { PlaceModule } from './place/place.module';
 import { UserModule } from './user/user.module';
 import { ParseModule } from './parse/parse.module';
 import { FileModule } from './file/file.module';
+import { MiddlewareModule } from './middlewares/middleware.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { FileModule } from './file/file.module';
     UserModule,
     ParseModule,
     FileModule,
+    MiddlewareModule,
   ],
   controllers: [AppController],
   providers: [AppService],

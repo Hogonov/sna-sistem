@@ -14,12 +14,6 @@ export enum FileType {
   CSV = 'csv',
 }
 
-export enum ConvertType {
-  STRING = 'string',
-  NUMBER = 'number',
-  DATE = 'date',
-}
-
 @Injectable()
 export class FileService {
   createFile(type: FileType, file): string {

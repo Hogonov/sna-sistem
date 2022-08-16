@@ -2,7 +2,7 @@ import { Document } from 'mongoose';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { ApiProperty } from '@nestjs/swagger';
 
-export type EntityDocument = Hashtag & Document;
+export type HashtagDocument = Hashtag & Document;
 
 @Schema()
 export class Hashtag {
